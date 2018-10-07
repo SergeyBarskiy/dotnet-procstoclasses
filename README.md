@@ -1,2 +1,2 @@
 # dotnet-procstoclasses
-Dot net tool to generate classes from stored procedures
+DotNet tool to generate classes from stored procedures
