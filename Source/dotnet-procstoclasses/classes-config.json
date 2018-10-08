@@ -1,0 +1,22 @@
+﻿{
+  "procedures": [
+    {
+      "name": "usp_Company_GetById_With_Children",
+      "criteria": "TestCriteria",
+      "wrapperData": "WrappedData",
+      "executor": "TestExecutor",
+      "classes": [
+        "FirstClass",
+        "SecondClass"
+      ],
+      "locations": {
+        "interfaces": ".\\Interfaces",
+        "implementations": ".\\Implementations"
+      },
+      "namespaces": {
+        "classes": "Classes",
+        "interfaces": "Interfaces"
+      }
+    }
+  ]
+}

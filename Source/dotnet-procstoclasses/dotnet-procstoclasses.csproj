@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <PackAsTool>true</PackAsTool>
+    <IsPackable>true</IsPackable>
+    <LangVersion>7.1</LangVersion>
+    <RootNamespace>ClassesFromStoredProcsGenerator</RootNamespace>
+    <Authors>Sergey Barskiy</Authors>
+    <Description>This is a dotnet command line tool that generates classes from stored procedures</Description>
+    <RepositoryType>git</RepositoryType>
+    <Copyright>@Sergey Barskiy, 2018</Copyright>
+    <PackageProjectUrl>https://github.com/SergeyBarskiy/dotnet-procstoclasses</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/SergeyBarskiy/dotnet-procstoclasses/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageIconUrl></PackageIconUrl>
+    <RepositoryUrl>https://github.com/SergeyBarskiy/dotnet-procstoclasses/blob/master/LICENSE</RepositoryUrl>
+    <PackageTags>.net core, tool</PackageTags>
+    <PackageReleaseNotes>1.0 Initital release
+	</PackageReleaseNotes>
+    <AssemblyVersion>1.1.0.0</AssemblyVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <FileVersion>1.1.0.0</FileVersion>
+    <Version>1.1.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="McMaster.Extensions.CommandLineUtils" Version="2.2.5" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.5.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="classes-config.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
