@@ -12,8 +12,8 @@ namespace ClassesFromStoredProcsGenerator
     [Command(
            Name = "dotnet procstoclasses",
            FullName = "dotnet-procstoclasses",
-           Description = "Generates stored procedures",
-           ExtendedHelpText = "This tool generates classes from stored procedures.  Use -s to specify server name and -d for the database name.  SSPI will be used.")]
+           Description = "Generates classes from stored procedures",
+           ExtendedHelpText = "This tool generates classes from stored procedures.  Use -s to specify server name and -d for the database name. SSPI will be used. Use -c to specify custom confguration file.  If omitted, classes-config.json will be expected in current folder.")]
     [HelpOption]
     public partial class Generator
     {
@@ -36,7 +36,7 @@ namespace ClassesFromStoredProcsGenerator
         [Option("-d|--database", CommandOptionType.SingleValue, Description = "Database name", ShowInHelpText = true)]
         public string Database { get; }
 
-        [Option("-c|--config", CommandOptionType.SingleValue, Description = "Config file location", ShowInHelpText = true)]
+        [Option("-c|--config", CommandOptionType.SingleValue, Description = "Config file locatio and name.  Default is classes-config.json in current folder", ShowInHelpText = true)]
         public string Config { get; } = @".\classes-config.json";
 
         public async Task<int> OnExecute(CommandLineApplication app, IConsole console)
@@ -50,6 +50,7 @@ namespace ClassesFromStoredProcsGenerator
                 using (var connection = CreateConnection())
                 {
                     await connection.OpenAsync();
+                    int total = 0;
                     Console.WriteLine("Connected...");
                     var config = JsonConvert.DeserializeObject<Config>(File.ReadAllText("classes-config.json"));
                     config.Procedures.ForEach(procedure =>
@@ -57,8 +58,9 @@ namespace ClassesFromStoredProcsGenerator
                         Console.WriteLine($"Processing {procedure.Name}...");
                         var metadata = _storedProcecureMetadataRetreiver.GetMetadata(procedure, connection);
                         _classCreator.CreateStoredProcedureAccessClasses(procedure, metadata);
+                        total++;
                     });
-                   
+                    Console.WriteLine($"Completed. {total} procedures were processed");
                 }
 
                 return Program.OK;

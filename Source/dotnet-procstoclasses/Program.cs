@@ -22,7 +22,6 @@ namespace ClassesFromStoredProcsGenerator
                     .AddSingleton<IClassCreator, ClassCreator>()
                     .AddSingleton<IStoredProcecureMetadataRetreiver, StoredProcecureMetadataRetreiver>()
                     .AddSingleton(PhysicalConsole.Singleton)
-
                     .BuildServiceProvider();
 
                 var app = new CommandLineApplication<Generator>();

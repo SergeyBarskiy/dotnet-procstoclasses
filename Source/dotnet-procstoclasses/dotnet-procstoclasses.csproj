@@ -14,9 +14,9 @@
     <PackageProjectUrl>https://github.com/SergeyBarskiy/dotnet-procstoclasses</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/SergeyBarskiy/dotnet-procstoclasses/blob/master/LICENSE</PackageLicenseUrl>
     <PackageIconUrl></PackageIconUrl>
-    <RepositoryUrl>https://github.com/SergeyBarskiy/dotnet-procstoclasses/blob/master/LICENSE</RepositoryUrl>
+    <RepositoryUrl>https://github.com/SergeyBarskiy/dotnet-procstoclasses/</RepositoryUrl>
     <PackageTags>.net core, tool</PackageTags>
-    <PackageReleaseNotes>1.0 Initital release
+    <PackageReleaseNotes>1.1 Initital release
 	</PackageReleaseNotes>
     <AssemblyVersion>1.1.0.0</AssemblyVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
