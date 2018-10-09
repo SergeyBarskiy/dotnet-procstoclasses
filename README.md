@@ -1,6 +1,10 @@
 # dotnet-procstoclasses
 DotNet tool to generate classes from stored procedures
 
+To install type 
+
+dotnet tool install --global dotnet-storedprocsgen
+
 In order to run the generator, you must create a configuration file in a folder that you are running the generator from.  Here is an example of such file, by default named classes=config.json
 
 <pre>
@@ -30,7 +34,8 @@ In order to run the generator, you must create a configuration file in a folder 
 It contains a list of procedure objects.  All fields are required.
 
 name is just procedure's name
-criteria is the name of the class for criteria object
+
+criteria is the name of the class for criteria object. Leave blank for procedures without parameters
 
 wrappedData is the name of the class that is returned once procedure is executed.  It will have prorperties, one for each list correspnding to a single result set
 
