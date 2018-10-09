@@ -79,7 +79,6 @@ namespace ClassesFromStoredProcsGenerator
         {
             var procedureName = procedure.Name;
 
-            conn.Open();
             using (var cmd = conn.CreateCommand())
             {
                 cmd.CommandText = @"

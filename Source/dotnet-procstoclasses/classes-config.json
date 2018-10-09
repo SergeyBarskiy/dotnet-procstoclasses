@@ -10,12 +10,12 @@
         "SecondClass"
       ],
       "locations": {
-        "interfaces": ".\\Interfaces",
-        "implementations": ".\\Implementations"
+        "interfaces": "..\\..\\..\\..\\ProcsToClassesIntegrationTests\\Interfaces",
+        "implementations": "..\\..\\..\\..\\ProcsToClassesIntegrationTests\\Implementations"
       },
       "namespaces": {
         "classes": "Classes",
-        "interfaces": "Interfaces"
+        "interfaces": "Abstractions"
       }
     }
   ]

@@ -5,6 +5,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.Data.SqlClient;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ClassesFromStoredProcsGenerator
@@ -39,6 +40,9 @@ namespace ClassesFromStoredProcsGenerator
         [Option("-c|--config", CommandOptionType.SingleValue, Description = "Config file locatio and name.  Default is classes-config.json in current folder", ShowInHelpText = true)]
         public string Config { get; } = @".\classes-config.json";
 
+        [Option("-p|--procedure", CommandOptionType.SingleValue, Description = "Singe procedure name to pick from config file to generate code for.", ShowInHelpText = true)]
+        public string Procedure { get; } = "";
+
         public async Task<int> OnExecute(CommandLineApplication app, IConsole console)
         {
             var configFile = new FileInfo(Config);
@@ -53,7 +57,9 @@ namespace ClassesFromStoredProcsGenerator
                     int total = 0;
                     Console.WriteLine("Connected...");
                     var config = JsonConvert.DeserializeObject<Config>(File.ReadAllText("classes-config.json"));
-                    config.Procedures.ForEach(procedure =>
+                    config.Procedures
+                        .Where(prop => string.IsNullOrEmpty(Procedure) || prop.Name.ToUpper() == Procedure.ToUpper()).ToList()
+                        .ForEach(procedure =>
                     {
                         Console.WriteLine($"Processing {procedure.Name}...");
                         var metadata = _storedProcecureMetadataRetreiver.GetMetadata(procedure, connection);
