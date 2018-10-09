@@ -17,6 +17,23 @@
         "classes": "Classes",
         "interfaces": "Abstractions"
       }
+    },
+    {
+      "name": "usp_Company_Get_All",
+      "criteria": "",
+      "wrapperData": "GetAllCompaniesData",
+      "executor": "GetAllCompaniesExecutor",
+      "classes": [
+        "CompanyInfo"
+      ],
+      "locations": {
+        "interfaces": "..\\..\\..\\..\\ProcsToClassesIntegrationTests\\Interfaces",
+        "implementations": "..\\..\\..\\..\\ProcsToClassesIntegrationTests\\Implementations"
+      },
+      "namespaces": {
+        "classes": "Classes",
+        "interfaces": "Abstractions"
+      }
     }
   ]
 }

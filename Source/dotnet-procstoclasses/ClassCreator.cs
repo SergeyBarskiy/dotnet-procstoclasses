@@ -19,11 +19,15 @@ namespace ClassesFromStoredProcsGenerator
         }
         public void CreateStoredProcedureAccessClasses(Procedure procedure, StoreProcedureMetadata metadata)
         {
-            var criteria = GetCriteria(metadata.Parameters, procedure.Criteria, procedure.Namespaces);
-            var criteriaFile = Path.Combine(procedure.Locations.Interfaces, procedure.Criteria + ".cs");
-            var file = new FileInfo(criteriaFile);
-            file.Directory.Create();
-            File.WriteAllText(criteriaFile, criteria);
+            FileInfo file;
+            if (!string.IsNullOrEmpty(procedure.Criteria))
+            {
+                var criteria = GetCriteria(metadata.Parameters, procedure.Criteria, procedure.Namespaces);
+                var criteriaFile = Path.Combine(procedure.Locations.Interfaces, procedure.Criteria + ".cs");
+                file = new FileInfo(criteriaFile);
+                file.Directory.Create();
+                File.WriteAllText(criteriaFile, criteria);
+            }
 
             var wrapperData = GetWrapperData(procedure);
             var wrapperDataFile = Path.Combine(procedure.Locations.Interfaces, procedure.WrapperData + ".cs");
@@ -89,7 +93,12 @@ namespace ClassesFromStoredProcsGenerator
                 .Replace(Templates.CriteriaClass, procedure.Criteria)
                 .Replace(Templates.NamespaceTag, procedure.Namespaces.Interfaces))
                 .Replace("    ", "\t");
-            return result.ToString();
+            var output = result.ToString();
+            if (string.IsNullOrEmpty(procedure.Criteria))
+            {
+                output = output.Replace(@" criteria, ", "");
+            }
+            return output;
         }
 
         public string GetExecutorClass(Procedure procedure, StoreProcedureMetadata metadata)
@@ -185,7 +194,7 @@ namespace ClassesFromStoredProcsGenerator
                 readResults.AppendLine("\t\t\t\t\t}");
             });
 
-            return result.ToString()
+            var output = result.ToString()
                 .Replace(Templates.Mappers, privateMembers.ToString())
                 .Replace(Templates.ConstructorParameters, contructorParameters.ToString())
                 .Replace(Templates.SetMembers, setMemebers.ToString())
@@ -193,6 +202,12 @@ namespace ClassesFromStoredProcsGenerator
                 .Replace(Templates.CommandParameters, commandParameters.ToString())
                 .Replace(Templates.ReadResults, readResults.ToString())
                 .Replace(Templates.ProcedureName, @"""" + procedure.Name + @"""");
+
+            if (string.IsNullOrEmpty(procedure.Criteria))
+            {
+                output = output.Replace(@" criteria, ", "");
+            }
+            return output;
         }
 
         public string GetCriteria(List<ParameterInfo> parameters, string criteriaClassName, NamespaceData namespaceData)

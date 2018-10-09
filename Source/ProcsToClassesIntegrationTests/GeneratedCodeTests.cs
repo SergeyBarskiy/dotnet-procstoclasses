@@ -1,9 +1,6 @@
 ﻿using Classes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ProcsToClassesIntegrationTests
@@ -12,13 +9,25 @@ namespace ProcsToClassesIntegrationTests
     public class GeneratedCodeTests
     {
         [TestMethod]
-        public async Task Should_Execute_Data()
+        public async Task Should_Execute_Parameterized_Procedure()
         {
             using (var connection = CreateConnection())
             {
                 await connection.OpenAsync();
                 var exec = new TestExecutor(new FirstClassMapper(), new SecondClassMapper());
                 var data = await exec.Execute(new Abstractions.TestCriteria { CompanyId = 2 }, connection);
+                Assert.IsNotNull(data, "Should get the data");
+            }
+        }
+
+        [TestMethod]
+        public async Task Should_Execute_Parameterless_Procedure()
+        {
+            using (var connection = CreateConnection())
+            {
+                await connection.OpenAsync();
+                var exec = new GetAllCompaniesExecutor(new CompanyInfoMapper());
+                var data = await exec.Execute(connection);
                 Assert.IsNotNull(data, "Should get the data");
             }
         }
