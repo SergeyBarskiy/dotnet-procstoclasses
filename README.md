@@ -3,7 +3,7 @@ DotNet tool to generate C# classes from SQL Server stored procedures.  Those cla
 
 To install, type 
 
-**dotnet tool install --global dotnet-storedprocsgen**
+**dotnet tool install --global dotnet-procstoclasses**
 
 In order to run the generator, you must create a configuration file in a folder that you are running the generator from.  Here is an example of such file, by default named classes-config.json
 
