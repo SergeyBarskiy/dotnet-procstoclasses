@@ -15,7 +15,7 @@ namespace ClassesFromStoredProcsGenerator
         {
             try
             {
-
+                Console.WriteLine("Starting generator");
                 var services = new ServiceCollection()
                     .AddSingleton<ICSharpClassNameConverter, CSharpClassNameConverter>()
                     .AddSingleton<ISqlTypeConverter, SqlTypeConverter>()
