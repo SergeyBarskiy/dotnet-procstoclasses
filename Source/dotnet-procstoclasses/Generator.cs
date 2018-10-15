@@ -56,7 +56,7 @@ namespace ClassesFromStoredProcsGenerator
                     await connection.OpenAsync();
                     int total = 0;
                     Console.WriteLine("Connected...");
-                    var config = JsonConvert.DeserializeObject<Config>(File.ReadAllText("classes-config.json"));
+                    var config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(configFile.FullName));
                     config.Procedures
                         .Where(prop => string.IsNullOrEmpty(Procedure) || prop.Name.ToUpper() == Procedure.ToUpper()).ToList()
                         .ForEach(procedure =>

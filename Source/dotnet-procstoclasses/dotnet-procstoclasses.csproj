@@ -17,11 +17,12 @@
     <RepositoryUrl>https://github.com/SergeyBarskiy/dotnet-procstoclasses/</RepositoryUrl>
     <PackageTags>.net core, tool</PackageTags>
     <PackageReleaseNotes>1.1 Initital release
+1.2 Fix issue with store proc generation and add support for date time
 	</PackageReleaseNotes>
-    <AssemblyVersion>1.1.0.0</AssemblyVersion>
+    <AssemblyVersion>1.2.0.0</AssemblyVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <FileVersion>1.1.0.0</FileVersion>
-    <Version>1.1.0</Version>
+    <FileVersion>1.2.0.0</FileVersion>
+    <Version>1.2.0</Version>
     <ToolCommandName>dotnet-procstoclasses</ToolCommandName>
   </PropertyGroup>
 
