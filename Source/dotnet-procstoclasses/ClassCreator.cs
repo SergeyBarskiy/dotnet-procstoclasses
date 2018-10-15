@@ -273,6 +273,31 @@ namespace ClassesFromStoredProcsGenerator
                         parametersSection.AppendLine($"\t\t\tresult.{p.ColumnName} = (byte[])reader[{p.ColumnOrdinal}];");
                     }
                 }
+                else if (p.DataType == typeof(int) && p.AllowDBNull)
+                {
+                    parametersSection.AppendLine($"\t\t\tresult.{p.ColumnName} = reader.IsDBNull({p.ColumnOrdinal}) ? (int?)null : reader.{reader}({p.ColumnOrdinal});");
+                }
+                else if (p.DataType == typeof(short) && p.AllowDBNull)
+                {
+                    parametersSection.AppendLine($"\t\t\tresult.{p.ColumnName} = reader.IsDBNull({p.ColumnOrdinal}) ? (short?)null : reader.{reader}({p.ColumnOrdinal});");
+                }
+                else if (p.DataType == typeof(long) && p.AllowDBNull)
+                {
+                    parametersSection.AppendLine($"\t\t\tresult.{p.ColumnName} = reader.IsDBNull({p.ColumnOrdinal}) ? (long?)null : reader.{reader}({p.ColumnOrdinal});");
+                }
+                else if (p.DataType == typeof(DateTime) && p.AllowDBNull)
+                {
+                    parametersSection.AppendLine($"\t\t\tresult.{p.ColumnName} = reader.IsDBNull({p.ColumnOrdinal}) ? (DateTime?)null : reader.{reader}({p.ColumnOrdinal});");
+                }
+                else if (p.DataType == typeof(bool) && p.AllowDBNull)
+                {
+                    parametersSection.AppendLine($"\t\t\tresult.{p.ColumnName} = reader.IsDBNull({p.ColumnOrdinal}) ? (bool?)null : reader.{reader}({p.ColumnOrdinal});");
+                }
+
+                else if (p.DataType == typeof(decimal) && p.AllowDBNull)
+                {
+                    parametersSection.AppendLine($"\t\t\tresult.{p.ColumnName} = reader.IsDBNull({p.ColumnOrdinal}) ? (decimal?)null : reader.{reader}({p.ColumnOrdinal});");
+                }
                 else
                 {
                     if (p.AllowDBNull)

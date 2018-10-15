@@ -50,7 +50,7 @@ namespace ClassesFromStoredProcsGenerator
             { typeof(ulong), "ulong" },
             { typeof(ushort), "ushort" },
             { typeof(byte[]), "byte[]" },
-            { typeof(DateTime), "datetime"}
+            { typeof(DateTime), "DateTime"}
         };
 
         Dictionary<Type, string> readerTypes = new Dictionary<Type, string>
