@@ -10,6 +10,7 @@ jobs:
     env:
       BUILD_CONFIG: 'Release'
       SOLUTION: 'dotnet-procstoclasses.sln'
+      MAIN_PROJECT: 'dotnet-procstoclasses'
     
     runs-on: ubuntu-latest
 
@@ -22,8 +23,8 @@ jobs:
           nuget-version: latest
 
       - name: Restore dependencies
-        working-directory: ./Source
-        run: nuget restore $SOLUTION
+        working-directory: ./Source/dotnet-procstoclasses
+        run: nuget restore $MAIN_PROJECT
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
@@ -31,9 +32,5 @@ jobs:
           dotnet-version: 7.0.*
 
       - name: Build
-        working-directory: ./Source
-        run: dotnet build $SOLUTION --configuration $BUILD_CONFIG --no-restore
-
-      - name: Run tests
-        working-directory: ./Source
-        run: dotnet test $SOLUTION --configuration $BUILD_CONFIG --no-restore --no-build --verbosity normal
+        working-directory: ./Source/dotnet-procstoclasses
+        run: dotnet build $MAIN_PROJECT --configuration $BUILD_CONFIG --no-restore
