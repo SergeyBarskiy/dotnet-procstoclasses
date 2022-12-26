@@ -12,7 +12,7 @@ jobs:
     env:
       BUILD_CONFIG: 'Release'
       SOLUTION: 'dotnet-procstoclasses.sln'
-      MAIN_PROJECT: 'dotnet-procstoclasses'
+      MAIN_PROJECT: 'dotnet-procstoclasses.csproj'
     
     runs-on: ubuntu-latest
 
