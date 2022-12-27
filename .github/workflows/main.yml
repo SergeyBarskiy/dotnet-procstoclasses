@@ -22,14 +22,14 @@ jobs:
         with: 
           nuget-version: latest
 
-      - name: Restore dependencies
-        working-directory: ./Source/dotnet-procstoclasses
-        run: nuget restore $MAIN_PROJECT
-
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 7.0.*
+
+      - name: Restore dependencies
+        working-directory: ./Source/dotnet-procstoclasses
+        run: dotnet restore $MAIN_PROJECT
 
       - name: Build
         working-directory: ./Source/dotnet-procstoclasses
